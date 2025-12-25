@@ -1,12 +1,10 @@
 import React from "react";
-import { Outlet } from "react-router-dom";
-import Header from "../components/Header";
+import OurProducts from "../pages/OurProducts";
 
 const AdminLayout = () => {
   return (
     <div>
-      <Header />
-      <Outlet />
+      <OurProducts />
     </div>
   );
 };

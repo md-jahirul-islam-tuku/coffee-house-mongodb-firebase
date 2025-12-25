@@ -1,7 +1,7 @@
 import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import "./index.css";
-import App from "./App.jsx";
+import Home from "./components/Home.jsx";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import MainLayout from "./layouts/MainLayout.jsx";
 import ErrorPage from "./components/ErrorPage.jsx";
@@ -17,21 +17,26 @@ const router = createBrowserRouter([
     children: [
       {
         index: true,
-        Component: App,
-      },
-    ],
-  },
-  {
-    path: "/admin",
-    Component: AdminLayout,
-    errorElement: <ErrorPage />,
-    children: [
-      {
-        index: true,
-        Component: OurProducts,
+        Component: Home,
       },
       {
-        path: "add-coffee",
+        path: "/",
+        Component: Home,
+        children: [
+          {
+            path: "admin",
+            Component: AdminLayout,
+            children: [
+              {
+                path:'all-coffee',
+                
+              }
+            ],
+          },
+        ],
+      },
+      {
+        path: "/admin/add-coffee",
         Component: AddCoffee,
       },
     ],
