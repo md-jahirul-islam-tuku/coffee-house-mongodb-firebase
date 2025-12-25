@@ -16,7 +16,7 @@ function App() {
           <p className="mb-5">
             It's coffee time - Sip & Savor - Relaxation in every sip! Get the nostalgia back!! Your companion of every moment!!! Enjoy the beautiful moments and make them memorable.
           </p>
-          <button className="btn btn-warning shadow-none rounded-none fontRancho">Learn More</button>
+          <button className="btn btn-secondary text-primary shadow-none rounded-none fontRancho">Learn More</button>
         </div>
       </div>
     </div>
