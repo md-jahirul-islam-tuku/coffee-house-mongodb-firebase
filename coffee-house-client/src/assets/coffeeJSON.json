@@ -7,7 +7,7 @@
     "taste": "Strong & Bold",
     "details": "Rich espresso with intense aroma and thick crema.",
     "price": 120,
-    "photo": "https://i.ibb.co/9YQZp6Q/espresso.png"
+    "photo": "https://i.ibb.co/mF6MyFHH/1.png"
   },
   {
     "name": "Cappuccino Delight",
@@ -17,7 +17,7 @@
     "taste": "Creamy & Smooth",
     "details": "Perfect balance of espresso, steamed milk, and foam.",
     "price": 150,
-    "photo": "https://i.ibb.co/vVwN9JQ/cappuccino.png"
+    "photo": "https://i.ibb.co/5XhTDvKr/2.png"
   },
   {
     "name": "Latte Supreme",
@@ -27,7 +27,7 @@
     "taste": "Mild & Milky",
     "details": "Smooth espresso blended with silky steamed milk.",
     "price": 170,
-    "photo": "https://i.ibb.co/5YjL2pX/latte.png"
+    "photo": "https://i.ibb.co/0yqWgGRG/3.png"
   },
   {
     "name": "Mocha Magic",
@@ -37,7 +37,7 @@
     "taste": "Chocolate & Sweet",
     "details": "Espresso mixed with chocolate syrup and milk.",
     "price": 180,
-    "photo": "https://i.ibb.co/3kWf4b9/mocha.png"
+    "photo": "https://i.ibb.co/ND5G4LP/4.png"
   },
   {
     "name": "Americano Pure",
@@ -47,7 +47,7 @@
     "taste": "Light & Smooth",
     "details": "Espresso diluted with hot water for a clean taste.",
     "price": 110,
-    "photo": "https://i.ibb.co/QcZ8mX7/americano.png"
+    "photo": "https://i.ibb.co/MmJpjHK/5.png"
   },
   {
     "name": "Cold Brew Fusion",
@@ -57,6 +57,6 @@
     "taste": "Cold & Refreshing",
     "details": "Slow brewed cold coffee with a naturally sweet finish.",
     "price": 200,
-    "photo": "https://i.ibb.co/Zx5xKZP/coldbrew.png"
+    "photo": "https://i.ibb.co/v6hY1ds0/6.png"
   }
 ]

@@ -44,7 +44,6 @@ const AddCoffee = () => {
           });
           form.reset();
         }
-        console.log(data);
       });
   };
   return (

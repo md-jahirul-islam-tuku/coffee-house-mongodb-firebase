@@ -8,6 +8,7 @@ import ErrorPage from "./components/ErrorPage.jsx";
 import AdminLayout from "./layouts/AdminLayout.jsx";
 import OurProducts from "./pages/OurProducts.jsx";
 import AddCoffee from "./components/AddCoffee.jsx";
+import ViewCoffee from "./components/ViewCoffee.jsx";
 
 const router = createBrowserRouter([
   {
@@ -28,9 +29,8 @@ const router = createBrowserRouter([
             Component: AdminLayout,
             children: [
               {
-                path:'all-coffee',
-                
-              }
+                path: "all-coffee",
+              },
             ],
           },
         ],
@@ -38,6 +38,14 @@ const router = createBrowserRouter([
       {
         path: "/admin/add-coffee",
         Component: AddCoffee,
+      },
+      {
+        path: "/admin/coffees/:id",
+        loader: async ({ params }) => {
+          const res = await fetch(`http://localhost:3000/admin/coffees/${params.id}`);
+          return res.json();
+        },
+        Component: ViewCoffee,
       },
     ],
   },
