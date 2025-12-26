@@ -9,6 +9,7 @@ import AdminLayout from "./layouts/AdminLayout.jsx";
 import OurProducts from "./pages/OurProducts.jsx";
 import AddCoffee from "./components/AddCoffee.jsx";
 import ViewCoffee from "./components/ViewCoffee.jsx";
+import UpdateCoffee from "./components/UpdateCoffee.jsx";
 
 const router = createBrowserRouter([
   {
@@ -36,16 +37,30 @@ const router = createBrowserRouter([
         ],
       },
       {
-        path: "/admin/add-coffee",
+        path: "admin/add-coffee",
         Component: AddCoffee,
       },
       {
-        path: "/admin/coffees/:id",
+        path: "admin/update-coffee/:id",
         loader: async ({ params }) => {
-          const res = await fetch(`http://localhost:3000/admin/coffees/${params.id}`);
+          const res = await fetch(
+            `http://localhost:3000/admin/coffees/${params.id}`
+          );
+          return res.json();
+        },
+        Component: UpdateCoffee,
+        hydrateFallbackElement: <h1>Loading....</h1>,
+      },
+      {
+        path: "admin/coffees/:id",
+        loader: async ({ params }) => {
+          const res = await fetch(
+            `http://localhost:3000/admin/coffees/${params.id}`
+          );
           return res.json();
         },
         Component: ViewCoffee,
+        hydrateFallbackElement: <h1>Loading....</h1>,
       },
     ],
   },

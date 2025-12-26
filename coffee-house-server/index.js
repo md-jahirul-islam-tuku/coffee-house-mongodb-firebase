@@ -53,6 +53,16 @@ async function run() {
       const result = await coffeeCollection.deleteOne(query);
       res.send(result);
     });
+    app.put("/update-coffee/:id", async (req, res) => {
+      const { id } = req.params;
+      const query = { _id: new ObjectId(id) };
+      const updatedData = {
+        $set: req.body,
+      };
+
+      const result = await coffeeCollection.updateOne(query, updatedData);
+      res.send(result);
+    });
 
     app.post("/add-coffee", async (req, res) => {
       const coffee = req.body;

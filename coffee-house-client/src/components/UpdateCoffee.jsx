@@ -1,34 +1,76 @@
 import React from "react";
 import { GoArrowLeft } from "react-icons/go";
-import { Link } from "react-router-dom";
+import { Link, useLoaderData } from "react-router-dom";
 import Swal from "sweetalert2";
 
-const AddCoffee = () => {
+const UpdateCoffee = () => {
+  const coffee = useLoaderData();
+  const { _id, name, supplier, category, chef, taste, details, price, photo } =
+    coffee;
   const handleSubmit = (e) => {
     e.preventDefault();
     const form = e.target;
-    const data = new FormData(form);
-    const updatedData = Object.fromEntries(data.entries());
-    fetch("http://localhost:3000/add-coffee", {
-      method: "POST",
-      headers: {
-        "content-type": "application/json",
-      },
-      body: JSON.stringify(updatedData),
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        if (data.insertedId) {
-          Swal.fire({
-            icon: "success",
-            title: `${updatedData.name}`,
-            text: "Added Successfully!",
-            showConfirmButton: false,
-            timer: 2000,
+    const name = form.name.value;
+    const supplier = form.supplier.value;
+    const category = form.category.value;
+    const chef = form.chef.value;
+    const taste = form.taste.value;
+    const details = form.details.value;
+    const price = form.price.value;
+    const photo = form.photo.value;
+    const newCoffee = {
+      name,
+      supplier,
+      category,
+      chef,
+      taste,
+      details,
+      price,
+      photo,
+    };
+    Swal.fire({
+      title: "Are you sure?",
+      html: `
+        Name - ${name},<br/><br/>
+        Supplier - ${supplier},<br/><br/>
+        Category - ${category},<br/><br/>
+        Price - ${price} Taka,<br/><br/>
+        Chef - ${chef},<br/><br/>
+        Taste - ${taste},<br/><br/>
+        Details - ${details}
+      `,
+      imageWidth: 150,
+      imageHeight: 170,
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: `Yes, update ${name} !`,
+    }).then((result) => {
+      if (result.isConfirmed) {
+        fetch(`http://localhost:3000/update-coffee/${_id}`, {
+          method: "PUT",
+          headers: {
+            "content-type": "application/json",
+          },
+          body: JSON.stringify(newCoffee),
+        })
+          .then((res) => res.json())
+          .then((data) => {
+            if (data.modifiedCount) {
+              Swal.fire({
+                icon: "success",
+                title: `${name}`,
+                imageUrl: `${photo}`,
+                imageWidth: 150,
+                imageHeight: 170,
+                text: "Updated Successfully!",
+                showConfirmButton: false,
+                timer: 3000,
+              });
+            }
           });
-          form.reset();
-        }
-      });
+      }
+    });
   };
   return (
     <div className="bg-[url('https://i.ibb.co/FbhPKvt9/11.png')] bg-cover bg-center mb-14">
@@ -41,7 +83,7 @@ const AddCoffee = () => {
         <form onSubmit={handleSubmit} className="bg-accent p-28 rounded-xl">
           <div className="text-center w-4/6 mx-auto">
             <h1 className="text-4xl fontRancho text-primary text-shadow">
-              Add New Coffee
+              Update Existing Coffee Details
             </h1>
             <p className="my-7">
               It is a long established fact that a reader will be distracted by
@@ -57,8 +99,7 @@ const AddCoffee = () => {
                 name="name"
                 type="text"
                 className="input w-full"
-                placeholder="Enter coffee name"
-                required
+                defaultValue={name}
               />
 
               <label className="label font-bold text-lg">Supplier</label>
@@ -66,8 +107,7 @@ const AddCoffee = () => {
                 name="supplier"
                 type="text"
                 className="input w-full"
-                placeholder="Enter coffee supplier"
-                required
+                defaultValue={supplier}
               />
 
               <label className="label font-bold text-lg">Category</label>
@@ -75,16 +115,14 @@ const AddCoffee = () => {
                 name="category"
                 type="text"
                 className="input w-full"
-                placeholder="Enter coffee category"
-                required
+                defaultValue={category}
               />
               <label className="label font-bold text-lg">Price</label>
               <input
                 name="price"
                 type="text"
                 className="input w-full"
-                placeholder="Enter coffee price"
-                required
+                defaultValue={price}
               />
             </fieldset>
             <fieldset className="fieldset w-full px-4">
@@ -93,8 +131,7 @@ const AddCoffee = () => {
                 name="chef"
                 type="text"
                 className="input w-full"
-                placeholder="Enter coffee chef"
-                required
+                defaultValue={chef}
               />
 
               <label className="label font-bold text-lg">Taste</label>
@@ -102,8 +139,7 @@ const AddCoffee = () => {
                 name="taste"
                 type="text"
                 className="input w-full"
-                placeholder="Enter coffee taste"
-                required
+                defaultValue={taste}
               />
 
               <label className="label font-bold text-lg">Details</label>
@@ -111,16 +147,14 @@ const AddCoffee = () => {
                 name="details"
                 type="text"
                 className="input w-full"
-                placeholder="Enter coffee details"
-                required
+                defaultValue={details}
               />
               <label className="label font-bold text-lg">Photo</label>
               <input
                 name="photo"
                 type="text"
                 className="input w-full"
-                placeholder="Enter photo URL"
-                required
+                defaultValue={photo}
               />
             </fieldset>
           </div>
@@ -128,7 +162,7 @@ const AddCoffee = () => {
             <input
               className="btn btn-secondary text-primary text-xl shadow-none border-2 border-primary fontRancho mt-4 hover:bg-transparent"
               type="submit"
-              value="Add coffee"
+              value="Update Coffee Details"
             />
           </fieldset>
         </form>
@@ -137,4 +171,4 @@ const AddCoffee = () => {
   );
 };
 
-export default AddCoffee;
+export default UpdateCoffee;

@@ -57,7 +57,7 @@ const AllCoffee = () => {
           <div>
             <img src={coffee.photo} />
           </div>
-          <div className="space-y-3 text-start">
+          <div className="space-y-3 lg:space-y-5 text-start">
             <p className="text-sm">
               <span className="font-bold">Name:</span> {coffee.name}
             </p>
@@ -70,18 +70,25 @@ const AllCoffee = () => {
           </div>
           <div className="flex flex-col gap-2">
             <Link to={`/admin/coffees/${coffee._id}`}>
-              <button className="btn btn-secondary btn-xs lg:btn-sm">
+              <button
+                className="btn btn-secondary btn-xs lg:btn-sm tooltip tooltip-top"
+                data-tip={`${coffee.name} details ?`}
+              >
                 <FaEye />
               </button>
             </Link>
-            <button className="btn btn-primary btn-xs lg:btn-sm">
-              <HiPencil />
-            </button>
+            <Link to={`/admin/update-coffee/${coffee._id}`}>
+              <button className="btn btn-primary btn-xs lg:btn-sm tooltip tooltip-top"
+                data-tip={`Update ${coffee.name} ?`}>
+                <HiPencil />
+              </button>
+            </Link>
             <button
               onClick={() =>
                 handleDelete(coffee._id, coffee.name, coffee.photo)
               }
-              className="btn bg-red-500 btn-xs lg:btn-sm text-white"
+              className="btn bg-red-500 btn-xs lg:btn-sm text-white tooltip tooltip-top"
+                data-tip={`Delete ${coffee.name} ?`}
             >
               <ImBin2 />
             </button>

@@ -1,5 +1,5 @@
 import React from "react";
-import { Outlet } from "react-router-dom";
+import { Link, Outlet } from "react-router-dom";
 function Home() {
   return (
     <>
@@ -20,9 +20,11 @@ function Home() {
               nostalgia back!! Your companion of every moment!!! Enjoy the
               beautiful moments and make them memorable.
             </p>
-            <button className="btn btn-secondary text-primary text-xl shadow-none fontRancho hover:bg-transparent rounded-none hover:text-white hover:border-white">
-              Learn More
-            </button>
+            <Link to={"/admin"}>
+              <button className="btn btn-secondary text-primary text-xl shadow-none fontRancho hover:bg-transparent rounded-none hover:text-white hover:border-white">
+                Learn More
+              </button>
+            </Link>
           </div>
         </div>
       </div>
