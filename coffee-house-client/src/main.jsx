@@ -10,6 +10,9 @@ import OurProducts from "./pages/OurProducts.jsx";
 import AddCoffee from "./components/AddCoffee.jsx";
 import ViewCoffee from "./components/ViewCoffee.jsx";
 import UpdateCoffee from "./components/UpdateCoffee.jsx";
+import AuthProvider from "./auth/AuthProvider.jsx";
+import LogIn from "./pages/LogIn.jsx";
+import Register from "./pages/Register.jsx";
 
 const router = createBrowserRouter([
   {
@@ -41,6 +44,14 @@ const router = createBrowserRouter([
         Component: AddCoffee,
       },
       {
+        path: "login",
+        Component: LogIn,
+      },
+      {
+        path: "register",
+        Component: Register,
+      },
+      {
         path: "admin/update-coffee/:id",
         loader: async ({ params }) => {
           const res = await fetch(
@@ -68,6 +79,8 @@ const router = createBrowserRouter([
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>
-    <RouterProvider router={router} />
+    <AuthProvider>
+      <RouterProvider router={router} />
+    </AuthProvider>
   </StrictMode>
 );

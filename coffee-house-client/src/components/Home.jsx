@@ -1,6 +1,8 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Link, Outlet } from "react-router-dom";
+import { AuthContext } from "../auth/AuthContext";
 function Home() {
+  const { user, logout } = useContext(AuthContext);
   return (
     <>
       <div
@@ -25,6 +27,17 @@ function Home() {
                 Learn More
               </button>
             </Link>
+            {!user ? (
+              <Link to={"/login"}>
+                <button className="btn btn-secondary text-primary text-xl shadow-none fontRancho hover:bg-transparent rounded-none hover:text-white hover:border-white ml-3">
+                  Log in
+                </button>
+              </Link>
+            ) : (
+              <button onClick={()=>logout()} className="btn btn-secondary text-primary text-xl shadow-none fontRancho hover:bg-transparent rounded-none hover:text-white hover:border-white ml-3">
+                Log out
+              </button>
+            )}
           </div>
         </div>
       </div>

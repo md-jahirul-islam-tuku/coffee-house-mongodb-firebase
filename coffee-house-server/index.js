@@ -26,6 +26,7 @@ async function run() {
     await client.connect();
     const db = client.db("coffeeHouseDB");
     const coffeeCollection = db.collection("allCoffee");
+    const usersCollection = db.collection("allUsers");
 
     app.get("/", (req, res) => {
       res.send("Hello World");
@@ -67,6 +68,23 @@ async function run() {
     app.post("/add-coffee", async (req, res) => {
       const coffee = req.body;
       const result = await coffeeCollection.insertOne(coffee);
+      res.send(result);
+    });
+
+    app.post("/users", async (req, res) => {
+      const user = req.body;
+      const result = await usersCollection.insertOne(user);
+      res.send(result);
+    });
+
+    app.patch("/users", async (req, res) => {
+      const { email, lastSignInTime } = req.body;
+      const filter = { email: email };
+      const updatedData = { lastSignInTime: lastSignInTime };
+      const updatedDoc = {
+        $set: updatedData,
+      };
+      const result = await usersCollection.updateOne(filter, updatedDoc);
       res.send(result);
     });
 

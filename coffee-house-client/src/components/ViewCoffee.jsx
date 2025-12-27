@@ -6,7 +6,6 @@ const ViewCoffee = () => {
   const coffee = useLoaderData();
   const { name, supplier, category, chef, taste, details, price, photo } =
     coffee;
-  console.log(coffee);
   return (
     <div className="bg-[url('https://i.ibb.co/FbhPKvt9/11.png')] bg-cover bg-center min-h-screen">
       <div className="lg:max-w-10/12 mx-auto">
